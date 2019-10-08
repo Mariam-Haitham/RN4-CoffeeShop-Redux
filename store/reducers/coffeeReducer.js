@@ -1,4 +1,4 @@
-import * as actionTypes from "../actions/types";
+import { GET_COFFEESHOPS, COFFEESHOPS_LOADING } from "../actions/types";
 
 const initialState = {
   coffeeShops: [],
@@ -7,13 +7,13 @@ const initialState = {
 
 const coffeeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_COFFEESHOPS:
+    case GET_COFFEESHOPS:
       return {
         ...state,
         coffeeShops: action.payload,
         loading: false
       };
-    case actionTypes.COFFEESHOPS_LOADING:
+    case COFFEESHOPS_LOADING:
       return {
         ...state,
         loading: true

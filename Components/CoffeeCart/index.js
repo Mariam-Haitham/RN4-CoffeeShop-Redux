@@ -6,6 +6,9 @@ import { Text, List, Button } from "native-base";
 // Component
 import CartItem from "./CartItem";
 
+//Actions
+import { checkout } from "../../store/actions";
+
 class CoffeeCart extends Component {
   render() {
     let items = this.props.items;
@@ -19,7 +22,7 @@ class CoffeeCart extends Component {
     return (
       <List>
         {cartItems}
-        <Button full danger>
+        <Button full danger onPress={() => this.props.checkout()}>
           <Text>Checkout</Text>
         </Button>
       </List>
@@ -31,4 +34,13 @@ const mapStateToProps = state => ({
   items: state.cartReducer.items
 });
 
-export default connect(mapStateToProps)(CoffeeCart);
+const mapDispatchToProps = dispatch => {
+  return {
+    checkout: () => dispatch(checkout())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoffeeCart);
